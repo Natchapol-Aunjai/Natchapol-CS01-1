@@ -1,0 +1,10 @@
+A=100
+B=5
+C=B+A
+D=A-B
+E=A*B
+F=A/B
+print(C)
+print(D)
+print(E)
+print(F)
