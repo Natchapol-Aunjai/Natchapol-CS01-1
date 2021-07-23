@@ -1,4 +1,4 @@
-A = input(int())
+A = input(int(A=))
 
 
 for i in range (100):
