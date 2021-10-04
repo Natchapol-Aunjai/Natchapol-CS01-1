@@ -36,6 +36,6 @@ for Matrix2 in range(MatrixRows):
     MatrixTwo.append(Matrix2)
 print()
 for i in range(MatrixRows):
-    for j in range(MatrixColoums):
+    for j in range(MatrixColumns):
         print(MatrixOne[i][j] + MatrixTwo[i][j],end = "")
         print()
