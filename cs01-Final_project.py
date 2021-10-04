@@ -1,100 +1,54 @@
-# Python program to create a simple GUI
-# calculator using Tkinter
-
-# import everything from tkinter module
-from tkinter import *
-
-# globally declare the expression variable
-expression = ""
-
-
-# Function to update expression
-# in the text entry box
-def press(num):
-	# point out the global expression variable
-	global expression
-
-	# concatenation of string
-	expression = expression + str(num)
-
-	# update the expression by using set method
-	equation.set(expression)
-
-
-# Function to evaluate the final expression
-def equalpress():
-	# Try and except statement is used
-	# for handling the errors like zero
-	# division error etc.
-
-	# Put that code inside the try block
-	# which may generate the error
-	try:
-
-		global expression
-
-		# eval function evaluate the expression
-		# and str function convert the result
-		# into string
-		total = str(eval(expression))
-
-		equation.set(total)
-
-		# initialize the expression variable
-		# by empty string
-		expression = ""
-
-	# if error is generate then handle
-	# by the except block
-	except:
-
-		equation.set(" error ")
-		expression = ""
-
-
-# Function to clear the contents
-# of text entry box
+from tkinter import*
 def clear():
-	global expression
-	expression = ""
-	equation.set("")
+    global expression
+    global lable_show_cal
+    result="0"
+    expression =""
+    lable_show_cal.set(result)
 
+def press(number):
+    global expression
+    global lable_show_cal
+    expression=expression+number
+    lable_show_cal.set(expression)
+def equal():
+    try:
+        global expression
+        global lable_show_cal
+        result=str(eval(expression))
+        lable_show_cal.set(result)
+    except:
+        result="error"
+        expression=""
+        lable_show_cal
+    lable_show_cal.set(result)
+Huyah = Tk()
+Huyah.title("Huyah Calculator")
+Huyah.option_add("font","consolas 30")
+lable_show_cal=StringVar()
+lable_show_cal.set(0)
+expression=""
+Label(Huyah,textvariable=lable_show_cal).grid(row=0,column=0,columnspan=4)
+Button(Huyah,text="clear",command=clear).grid(row=1,column=0,columnspan=4,sticky="news")
+Button(Huyah,text="7",command=lambda:press("7")).grid(row=2,column=0)
+Button(Huyah,text="8",command=lambda:press("8")).grid(row=2,column=1)
+Button(Huyah,text="9 ",command=lambda:press("9")).grid(row=2,column=2)
+Button(Huyah,text="/",command=lambda:press("/")).grid(row=2,column=3)
 
-# Driver code
-if __name__ == "__main__":
-	# create a GUI window
-	gui = Tk()
+Button(Huyah,text="4",command=lambda:press("4")).grid(row=3,column=0)
+Button(Huyah,text="5",command=lambda:press("5")).grid(row=3,column=1)
+Button(Huyah,text="6",command=lambda:press("6")).grid(row=3,column=2)
+Button(Huyah,text="",command=lambda:press("")).grid(row=3,column=3)
 
-	# set the background colour of GUI window
-	gui.configure(background="light green")
+Button(Huyah,text="1",command=lambda:press("1")).grid(row=4,column=0)
+Button(Huyah,text="2",command=lambda:press("2")).grid(row=4,column=1)
+Button(Huyah,text="3",command=lambda:press("3")).grid(row=4,column=2)
+Button(Huyah,text="-",command=lambda:press("-")).grid(row=4,column=3)
 
-	# set the title of GUI window
-	gui.title("Simple Calculator")
+Button(Huyah,text="0",command=lambda:press("0")).grid(row=5,column=0)
+Button(Huyah,text=".",command=lambda:press(".")).grid(row=5,column=1,columnspan=2,sticky="news")
+Button(Huyah,text="+",command=lambda:press("+")).grid(row=5,column=3)
 
-	# set the configuration of GUI window
-	gui.geometry("270x150")
+Button(Huyah,text="=",command=equal).grid(row=6,column=0,columnspan=4,sticky="news")
 
-	# StringVar() is the variable class
-	# we create an instance of this class
-	equation = StringVar()
-
-	# create the text entry box for
-	# showing the expression .
-	expression_field = Entry(gui, textvariable=equation)
-
-	# grid method is used for placing
-	# the widgets at respective positions
-	# in table like structure .
-	expression_field.grid(columnspan=4, ipadx=70)
-
-	# create a Buttons and place at a particular
-	# location inside the root window .
-	# when user press the button, the command or
-	# function affiliated to that button is executed .
-	button1 = Button(gui, text=' 1 ', fg='black', bg='cyan',
-					command=lambda: press(1), height=1, width=7)
-	button1.grid(row=2, column=0)
-
-	button2 = Button(gui, text=' 2 ', fg='black', bg='blue',
-					command=lambda: press(2), height=1, width=7)
-	button2.grid(row=2, column=1)
+Huyah.mainloop()
